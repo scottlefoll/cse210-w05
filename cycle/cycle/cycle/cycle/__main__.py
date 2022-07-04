@@ -1,23 +1,28 @@
-"""Snake
-Every great story seems to begin with a snake.
+"""Cycle
+The best rides are the ones where you
+bite off much more than you can chew,
+and live through it.
 
-- Nicolas Cage -
+- Doug Bradbury -
 
 Overview
 
-Snake is a game in which the player seeks to eat food and earn points without 
-running into their growing body.
+Cycle is a game where the players try to cut each other off using cycles that 
+leave a trail behind them.
 
 Rules
-Snake is played according to the following rules.
 
-Players can move up, down, left and right by using the W, S, A and D keys.
-Players try to eat the food by colliding with it.
-Each food item is worth a random number of points between 1 and 5.
-When a player eats the food...
-The snake grows by one segment for each point the food is worth.
-The food is reset to appear in a new location.
-If a player collides with any segment of their own body the game is over.
+Cycle is played according to the following rules:`
+
+Players can move up, down, left and right...
+Player one moves using the W, S, A and D keys.
+Player two moves using the I, K, J and L keys.
+Each player's trail grows as they move.
+Players try to maneuver so the opponent collides with their trail.
+If a player collides with their opponent's trail...
+A "game over" message is displayed in the middle of the screen.
+The cycles turn white.
+Players keep moving and turning but don't run into each other.
 
 Requirements
 
@@ -31,11 +36,11 @@ The program must remain true to game play described in the overview.
 Have Some Fun
 
 Have some fun by enhancing the game any way you like. A few ideas are as 
-follows.
+follows:
 
-Enhanced food scoring and reset.
+Enhanced scoring and game reset.
 Enhanced game play and game over messages.
-Enhanced game display, e.g. snake head or symbols"""
+Enhanced game display, e.g. cycle and trails"""
 
 import constants
 
