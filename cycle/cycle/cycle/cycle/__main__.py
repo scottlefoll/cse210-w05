@@ -7,7 +7,7 @@ and live through it.
 
 Overview
 
-Cycle is a game where the players try to cut each other off using cycles that 
+Cycle is a game where the players try to cut each other off using cycles that
 leave a trail behind them.
 
 Rules
@@ -35,7 +35,7 @@ The program must remain true to game play described in the overview.
 
 Have Some Fun
 
-Have some fun by enhancing the game any way you like. A few ideas are as 
+Have some fun by enhancing the game any way you like. A few ideas are as
 follows:
 
 Enhanced scoring and game reset.
@@ -66,17 +66,9 @@ def main():
     cast = Cast()
     cast.add_actor("foods", Food())
     cast.add_actor("snakes", Snake(1))
-    # cast.get_first_actor("snakes").set_snake_number(1)
     snake = cast.get_first_actor("snakes")
-    segments = snake.get_segments()
-    for segment in segments:
-        segment.set_color(constants.GREEN)
     cast.add_actor("snakes", Snake(2))
-    # cast.get_first_actor("snakes").set_snake_number(2)
     snake = cast.get_first_actor("snakes")
-    segments = snake.get_segments()
-    for segment in segments:
-        segment.set_color(constants.BLUE)
     cast.add_actor("scores", Score())
 
     # start the game

@@ -1,6 +1,7 @@
 import constants
 from game.casting.actor import Actor
 from game.shared.point import Point
+from game.services.timer_service import TimerService
 
 
 class Snake(Actor):
@@ -16,7 +17,10 @@ class Snake(Actor):
         super().__init__()
         self._segments = []
         self._snake_number = snake_number
+        self._number_of_segments = constants.SNAKE_LENGTH
         self._prepare_body()
+        self._t = TimerService()
+        self._t.start()
 
     def get_segments(self):
         return self._segments
@@ -34,6 +38,11 @@ class Snake(Actor):
             previous = self._segments[i - 1]
             velocity = previous.get_velocity()
             trailing.set_velocity(velocity)
+        if self._t.get_elapsed_time() > constants.SNAKE_GROWTH_INTERVAL:
+            self.grow_tail(constants.SNAKE_GROWTH_RATE)
+            self._t.reset()
+        else:
+            print("No Growth!")
 
     def get_head(self):
         return self._segments[0]
@@ -50,9 +59,9 @@ class Snake(Actor):
             segment.set_velocity(velocity)
             segment.set_text("#")
             if self._snake_number == 1:
-                segment.set_color(constants.BLUE)
+                segment.set_color(constants.SNAKE_COLOR1)
             else:
-                segment.set_color(constants.GREEN)
+                segment.set_color(constants.SNAKE_COLOR2)
             self._segments.append(segment)
 
     def set_snake_number(self, snake_number):
@@ -66,16 +75,16 @@ class Snake(Actor):
         y = int(constants.MAX_Y / 2)
 
         for i in range(constants.SNAKE_LENGTH):
-            position = Point(x - i * constants.CELL_SIZE, y)
+            if self._snake_number == 1:
+                position = Point(x - i * constants.CELL_SIZE, y - 50)
+            else:
+                position = Point(x - i * constants.CELL_SIZE, y - 100)
             velocity = Point(1 * constants.CELL_SIZE, 0)
             text = "8" if i == 0 else "#"
             if self._snake_number == 1:
-                color = constants.YELLOW if i == 0 else constants.BLUE
-            elif self._snake_number == 2:
-                color = constants.YELLOW
-                # if i == 0 else constants.GREEN
+                color = constants.YELLOW if i == 0 else constants.SNAKE_COLOR1
             else:
-                color = constants.YELLOW if i == 0 else constants.RED
+                color = constants.YELLOW if i == 0 else constants.SNAKE_COLOR2
             segment = Actor()
             segment.set_position(position)
             segment.set_velocity(velocity)

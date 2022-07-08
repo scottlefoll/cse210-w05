@@ -6,7 +6,7 @@ from game.shared.point import Point
 class Actor:
     """A visible, moveable thing that participates in the game.
     It has a position, a velocity, a text, and a color.
-    The responsibility of Actor is to keep track of its appearance, position 
+    The responsibility of Actor is to keep track of its appearance, position
     and velocity in 2d space.
 
     Attributes:
