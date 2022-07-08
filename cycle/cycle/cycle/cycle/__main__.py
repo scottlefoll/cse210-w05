@@ -65,10 +65,18 @@ def main():
     # create the cast
     cast = Cast()
     cast.add_actor("foods", Food())
-    cast.add_actor("snakes", Snake())
-    cast.get_first_actor("snakes").set_snake_number(1)
-    cast.add_actor("snakes", Snake())
-    cast.get_first_actor("snakes").set_snake_number(2)
+    cast.add_actor("snakes", Snake(1))
+    # cast.get_first_actor("snakes").set_snake_number(1)
+    snake = cast.get_first_actor("snakes")
+    segments = snake.get_segments()
+    for segment in segments:
+        segment.set_color(constants.GREEN)
+    cast.add_actor("snakes", Snake(2))
+    # cast.get_first_actor("snakes").set_snake_number(2)
+    snake = cast.get_first_actor("snakes")
+    segments = snake.get_segments()
+    for segment in segments:
+        segment.set_color(constants.BLUE)
     cast.add_actor("scores", Score())
 
     # start the game

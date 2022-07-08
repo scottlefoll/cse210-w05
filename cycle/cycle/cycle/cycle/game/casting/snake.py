@@ -12,10 +12,10 @@ class Snake(Actor):
     Attributes:
         _points (int): The number of points the food is worth.
     """
-    def __init__(self):
+    def __init__(self, snake_number):
         super().__init__()
         self._segments = []
-        self._snake_number = 0
+        self._snake_number = snake_number
         self._prepare_body()
 
     def get_segments(self):
@@ -71,8 +71,11 @@ class Snake(Actor):
             text = "8" if i == 0 else "#"
             if self._snake_number == 1:
                 color = constants.YELLOW if i == 0 else constants.BLUE
+            elif self._snake_number == 2:
+                color = constants.YELLOW
+                # if i == 0 else constants.GREEN
             else:
-                color = constants.YELLOW if i == 0 else constants.GREEN
+                color = constants.YELLOW if i == 0 else constants.RED
             segment = Actor()
             segment.set_position(position)
             segment.set_velocity(velocity)
