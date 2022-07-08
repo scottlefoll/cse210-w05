@@ -67,8 +67,8 @@ def main():
     cast.add_actor("foods", Food())
     cast.add_actor("snakes", Snake(1))
     snake = cast.get_first_actor("snakes")
+    snake.turn_head(Point(-constants.CELL_SIZE, 0))
     cast.add_actor("snakes", Snake(2))
-    snake = cast.get_first_actor("snakes")
     cast.add_actor("scores", Score())
 
     # start the game

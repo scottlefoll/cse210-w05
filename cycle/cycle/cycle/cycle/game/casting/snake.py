@@ -41,8 +41,6 @@ class Snake(Actor):
         if self._t.get_elapsed_time() > constants.SNAKE_GROWTH_INTERVAL:
             self.grow_tail(constants.SNAKE_GROWTH_RATE)
             self._t.reset()
-        else:
-            print("No Growth!")
 
     def get_head(self):
         return self._segments[0]

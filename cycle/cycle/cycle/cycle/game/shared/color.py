@@ -24,7 +24,7 @@ class Color:
         """
         self._red = red
         self._green = green
-        self._blue = blue 
+        self._blue = blue
         self._alpha = alpha
 
     def to_tuple(self):
