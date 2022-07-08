@@ -6,7 +6,7 @@ from game.shared.point import Point
 class Snake(Actor):
     """
     A long limbless reptile.
-    
+
     The responsibility of Snake is to move itself.
 
     Attributes:
@@ -15,10 +15,14 @@ class Snake(Actor):
     def __init__(self):
         super().__init__()
         self._segments = []
+        self._snake_number = 0
         self._prepare_body()
 
     def get_segments(self):
         return self._segments
+
+    def get_snake_number(self):
+        return self._snake_number
 
     def move_next(self):
         # move all segments
@@ -40,17 +44,23 @@ class Snake(Actor):
             velocity = tail.get_velocity()
             offset = velocity.reverse()
             position = tail.get_position().add(offset)
-            
+
             segment = Actor()
             segment.set_position(position)
             segment.set_velocity(velocity)
             segment.set_text("#")
-            segment.set_color(constants.GREEN)
+            if self._snake_number == 1:
+                segment.set_color(constants.BLUE)
+            else:
+                segment.set_color(constants.GREEN)
             self._segments.append(segment)
+
+    def set_snake_number(self, snake_number):
+        self._snake_number = snake_number
 
     def turn_head(self, velocity):
         self._segments[0].set_velocity(velocity)
-    
+
     def _prepare_body(self):
         x = int(constants.MAX_X / 2)
         y = int(constants.MAX_Y / 2)
@@ -59,8 +69,10 @@ class Snake(Actor):
             position = Point(x - i * constants.CELL_SIZE, y)
             velocity = Point(1 * constants.CELL_SIZE, 0)
             text = "8" if i == 0 else "#"
-            color = constants.YELLOW if i == 0 else constants.GREEN
-            
+            if self._snake_number == 1:
+                color = constants.YELLOW if i == 0 else constants.BLUE
+            else:
+                color = constants.YELLOW if i == 0 else constants.GREEN
             segment = Actor()
             segment.set_position(position)
             segment.set_velocity(velocity)

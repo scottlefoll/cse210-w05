@@ -61,13 +61,16 @@ from game.shared.point import Point
 
 
 def main():
-    
+
     # create the cast
     cast = Cast()
     cast.add_actor("foods", Food())
     cast.add_actor("snakes", Snake())
+    cast.get_first_actor("snakes").set_snake_number(1)
+    cast.add_actor("snakes", Snake())
+    cast.get_first_actor("snakes").set_snake_number(2)
     cast.add_actor("scores", Score())
-   
+
     # start the game
     keyboard_service = KeyboardService()
     video_service = VideoService()
@@ -77,7 +80,7 @@ def main():
     script.add_action("update", MoveActorsAction())
     script.add_action("update", HandleCollisionsAction())
     script.add_action("output", DrawActorsAction(video_service))
-    
+
     director = Director(video_service)
     director.start_game(cast, script)
 
